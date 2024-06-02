@@ -1,0 +1,27 @@
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+       Node* evenNode=new Node(-1);
+       Node* oddNode=new Node(-1);
+       
+       Node* temp1=evenNode;
+       Node* temp2=oddNode;
+       
+       Node* temp=head;
+       while(temp!=NULL){
+           if(temp->data%2==0){
+               temp1->next=temp;
+               temp1=temp1->next;
+           }
+           else{
+               temp2->next=temp;
+               temp2=temp2->next;
+           }
+           temp=temp->next;
+       }
+       
+       temp1->next=oddNode->next;
+       temp2->next=NULL;
+       return evenNode->next;
+    }
+};
