@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int findMid(ListNode* head)
+    {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        int cnt=1;
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+            cnt++;
+        }
+        return cnt;
+    }
+    ListNode* deleteMiddle(ListNode* head) {
+        int Mid=findMid(head);
+        ListNode* temp=head;
+        ListNode* prev=NULL;
+
+        if(Mid==1){
+            return NULL;
+        }
+        int cnt=1;
+        while(temp!=NULL && cnt!=Mid)
+        {
+            prev=temp;
+            temp=temp->next;
+            cnt++;
+        }
+        // cout<<prev->val<<" "<<temp->val<<" "<<temp->next->val;
+        prev->next=temp->next;
+        return head;
+    }
+};
