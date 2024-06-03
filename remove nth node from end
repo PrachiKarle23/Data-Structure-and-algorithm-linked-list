@@ -30,3 +30,31 @@ public:
         return head;
     }
 };
+
+//approach 2
+class Solution{
+public:
+    int length(Node* head){
+        Node* temp=head;
+        int cnt=1;
+        while(temp->next!=NULL){
+            temp=temp->next;
+            cnt++;
+        }
+        return cnt;
+    }
+    int getNthFromLast(Node *head, int n)
+    {
+         int len=length(head);
+         Node* temp=head;
+         int c=len-n,cnt=0;
+         while(c!=cnt && temp->next!=NULL){
+            temp=temp->next;
+            cnt++;
+         }
+         if(temp->next==NULL && cnt>c){
+             return -1;
+         }
+         return temp->data;
+    }
+};
