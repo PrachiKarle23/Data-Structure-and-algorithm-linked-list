@@ -1,0 +1,38 @@
+class Solution
+{
+    public:
+    Node* addOne(Node *head) 
+    {
+       vector<int>ans;
+       Node* temp=head;
+       while(temp != NULL)
+       {
+           ans.push_back(temp->data);
+           temp=temp->next;
+       }
+       int n=ans.size(),carry=0;
+       for(int i=n-1;i>=0;i--)
+       {
+           int x=0;
+          if(i==n-1){
+              x=1;
+          }
+          int sum=x+ans[i]+carry;
+          carry=sum/10;
+          ans[i]=sum%10;
+       }
+       if(carry>0){
+           ans.push_back(carry);
+           reverse(ans.begin(),ans.end());
+       }
+       
+       Node* newnode=new Node(-1);
+       Node* temp1=newnode;
+       for(int i=0;i<ans.size();i++)
+       {
+           temp1->next=new Node(ans[i]);
+           temp1=temp1->next;
+       }
+       return newnode->next;
+    }
+};
