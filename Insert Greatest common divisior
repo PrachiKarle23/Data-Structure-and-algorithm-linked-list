@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int solve(int v1,int v2)
+    {
+       int hcf=v1;
+       while(hcf!=v2){
+         if(hcf>v2){
+            hcf-=v2;
+         }
+         if(v2>hcf){
+            v2-=hcf;
+         }
+       }
+       return hcf;
+    }
+    ListNode* insertGreatestCommonDivisors(ListNode* head) {
+        ListNode* temp=head;
+        ListNode* temp1=head->next;
+
+        while(temp && temp1){
+             int val1=temp->val;
+             int val2=temp1->val;
+             int hcf=solve(val1,val2);
+
+             ListNode* newnode=new ListNode(hcf);
+             temp->next=newnode;
+             newnode->next=temp1;
+
+             temp=temp1;
+             temp1=temp1->next;
+        }
+        return head;
+    }
+};
