@@ -1,0 +1,19 @@
+class Solution {
+public:
+    ListNode* temp;
+    queue<int>a;
+    Solution(ListNode* head) {
+       temp=head;
+       while(temp!=NULL){
+        a.push(temp->val);
+        temp=temp->next;
+       }
+    }
+    
+    int getRandom() {
+        int ans=a.front();
+        a.pop();
+        a.push(ans);
+        return ans;
+    }
+};
