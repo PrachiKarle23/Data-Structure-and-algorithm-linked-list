@@ -1,0 +1,31 @@
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        ListNode* temp=head;
+        vector<int>a;
+        while(temp!=NULL){
+            a.push_back(temp->val);
+            temp=temp->next;
+        }
+
+        int n=a.size()-1,carry=0;
+        vector<int>ans;
+        for(int i=n;i>=0;i--){
+            int s=(a[i]*2)+carry;
+            ans.push_back(s%10);
+            carry=s/10;
+        }
+        if(carry!=0){
+            ans.push_back(carry);
+        }
+
+        ListNode* finalNode=new ListNode(-1);
+        ListNode* temp1=finalNode;
+        int m=ans.size();
+        for(int i=m-1;i>=0;i--){
+           temp1->next=new ListNode(ans[i]);
+           temp1=temp1->next;
+        }
+        return finalNode->next;
+    }
+};
