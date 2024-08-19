@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
+
+        int sr = 0;
+        int sc = 0;
+        int er = m - 1;
+        int ec = n - 1;
+        int cnt = 0;
+        vector<int> a;
+        while (head != NULL) {
+            a.push_back(head->val);
+            head = head->next;
+        }
+        int total = a.size(), p = 0;
+        vector<vector<int>> ans(m, vector<int>(n, -1));
+        ListNode* temp = head;
+        while (cnt < total) {
+            for (int i = sc; i <= ec && cnt < total; i++) {
+                ans[sr][i] = a[p++];
+                cnt++;
+            }
+            sr++;
+            for (int i = sr; i <= er && cnt < total; i++) {
+                ans[i][ec] = a[p++];
+                cnt++;
+            }
+            ec--;
+            for (int i = ec; i >= sc && cnt < total; i--) {
+                ans[er][i] = a[p++];
+                cnt++;
+            }
+            er--;
+            for (int i = er; i >= sr && cnt < total; i--) {
+                ans[i][sc] = a[p++];
+                cnt++;
+            }
+            sc++;
+        }
+        return ans;
+    }
+};
