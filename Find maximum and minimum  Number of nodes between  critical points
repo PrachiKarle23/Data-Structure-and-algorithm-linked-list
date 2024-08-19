@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+        vector<int>a1;
+        ListNode* prev=head;
+        ListNode* temp=head->next;
+        int cnt=1;
+        while(temp->next!=NULL){
+            int a=temp->val;
+            int b=prev->val;
+            int c=temp->next->val;
+            cnt++;
+            if((a>b && a>c)||(a<b && a<c))
+            {
+                a1.push_back(cnt);
+            }
+            prev=temp;
+            temp=temp->next;
+           
+        }
+        int n=a1.size();
+        if(n<=1){
+            return {-1,-1};
+        }
+       int mini=INT_MAX, maxi=a1[n-1]-a1[0];
+       for(int i=0;i<n-1;i++){
+           int diff=a1[i+1]-a1[i];
+           if(diff<mini){
+            mini=diff;
+           }
+       }
+       return {mini,maxi};
+    }
+};
