@@ -58,3 +58,35 @@ public:
          return temp->data;
     }
 };
+
+
+class Solution {
+public:
+    int findSize(ListNode* head,vector<int>& a)
+    {
+        ListNode* temp=head;
+        int cnt=0;
+        while(temp)
+        {
+            a.push_back(temp->val);
+            cnt++;
+            temp=temp->next;
+        }
+        return cnt;
+    }
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        vector<int>a;
+        int s=findSize(head,a)-n;
+        ListNode* ans=new ListNode(-1);
+        ListNode* temp=ans;
+        for(int i=0;i<a.size();i++)
+        {
+            if(i!=s)
+            {
+                temp->next=new ListNode(a[i]);
+                temp=temp->next;
+            }
+        }
+        return ans->next;
+    }
+};
