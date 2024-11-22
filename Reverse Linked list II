@@ -1,0 +1,35 @@
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode* t=head;
+        vector<int>a;
+        int cnt=0;
+        ListNode* ans=new ListNode(-1);
+        ListNode* temp=ans;
+        ListNode* end;
+        while(t)
+        {
+             if(cnt>=left-1 && cnt<=right-1)
+             {
+                a.push_back(t->val);
+             }
+             else if(cnt==right)
+             {
+               break;
+             }
+             else{
+                temp->next=new ListNode(t->val);
+                temp=temp->next;
+             }
+             t=t->next;
+             cnt++;
+        }
+        for(int i=a.size()-1;i>=0;i--)
+        {
+            temp->next=new ListNode(a[i]);
+            temp=temp->next;
+        }
+        temp->next=t;
+        return ans->next;
+    }
+};
