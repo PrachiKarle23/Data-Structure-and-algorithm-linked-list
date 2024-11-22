@@ -1,0 +1,34 @@
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+         stack<int>st;
+         queue<int>q;
+         ListNode* temp=head;
+         while(temp)
+         {
+            q.push(temp->val);
+            st.push(temp->val);
+            temp=temp->next;
+         }
+
+         int n=q.size(),cnt=0;
+         vector<int>a;
+         while(cnt!=n && !q.empty() && !st.empty())
+         {
+            int f=q.front();
+            int t=st.top();
+            q.pop();
+            st.pop();
+            a.push_back(f);
+            a.push_back(t);
+            cnt+=2;
+         }
+
+         ListNode* t1=head;
+         for(int i=0;i<n;i++)
+         {
+            t1->val=a[i];
+            t1=t1->next;
+         }
+    }
+};
