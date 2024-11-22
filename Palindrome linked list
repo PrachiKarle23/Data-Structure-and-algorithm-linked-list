@@ -19,3 +19,34 @@ public:
         return true;
     }
 };
+
+
+class Solution {
+public:
+    bool check(string &a)
+    {
+       int s=0,e=a.length()-1;
+       while(s<=e)
+       {
+          if(a[s]!=a[e]){
+            return false;
+          }
+          s++;
+          e--;
+       }
+       return true;
+    }
+    bool isPalindrome(ListNode* head) {
+        string a="";
+        ListNode* t=head;
+        while(t!=NULL)
+        {
+            a+=to_string(t->val);
+            t=t->next;
+        }
+        // string p=a;
+        // reverse(p.begin(),p.end());
+        // return p==a;
+        return check(a);
+    }
+};
