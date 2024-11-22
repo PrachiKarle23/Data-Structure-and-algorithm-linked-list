@@ -1,34 +1,21 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-         ListNode* temp=head;
-         ListNode* newnode=new ListNode(-1);
-         ListNode* temp1=newnode;
-         vector<int>ans;
-         while(temp!=NULL)
-         {
-           ans.push_back(temp->val);
-           temp=temp->next;
-         }
-         map<int,int>mp;
-         for(int i=0;i<ans.size();i++)
-         {
-            mp[ans[i]]++;
-         }
-          ans.clear();
-         for(auto i:mp){
-            if(i.second==1)
-            {
-               ans.push_back(i.first);
-            }
-         }  
+        set<int>st;
+        ListNode* t=head;
+        while(t!=NULL)
+        {
+            st.insert(t->val);
+            t=t->next;
+        }
 
-         for(int i=0;i<ans.size();i++)
-         {
-            temp1->next=new ListNode(ans[i]);
-            temp1=temp1->next;
-         }
-         temp1->next=NULL;
-         return newnode->next;
+        ListNode* ans=new ListNode(-1);
+        ListNode* temp=ans;
+        for(auto i:st)
+        {
+           temp->next=new ListNode(i);
+           temp=temp->next;
+        }
+        return ans->next;
     }
 };
