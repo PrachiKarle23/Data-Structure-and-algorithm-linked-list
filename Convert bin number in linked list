@@ -19,3 +19,18 @@ public:
          return ans;
     }
 };
+
+
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        string ans="";
+        ListNode* temp=head;
+        while(temp!=NULL)
+        {
+            ans+=to_string(temp->val);
+            temp=temp->next;
+        }
+        return stoi(ans,nullptr,2);
+    }
+};
