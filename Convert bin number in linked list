@@ -34,3 +34,31 @@ public:
         return stoi(ans,nullptr,2);
     }
 };
+
+
+
+//bin to dec direct
+class Solution {
+public:
+    int lenLL(ListNode* head)
+    {
+        int len=0;
+        while(head!=NULL){
+            head=head->next;
+            len++;
+        }
+        return len;
+    }
+    int getDecimalValue(ListNode* head) {
+        int n= lenLL(head);
+        ListNode* t=head;
+        int ans=0;
+        while(t!=NULL)
+        {
+            ans+=(t->val* pow(2,n-1));
+            t=t->next;
+            n--;
+        }
+        return ans;
+    }
+};
